@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    [SerializeField]
-    private Stats health, bladder, energy;
+    public Stats health, bladder, energy;
 
 
 	private void Awake ()
