@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public Stats health, bladder, energy;
+    
 
 
 	private void Awake ()
     {
-        health.Initialize();
-        bladder.Initialize();
-        energy.Initialize();
+        GameControl.control.health.Initialize();
+        GameControl.control.bladder.Initialize();
+        GameControl.control.energy.Initialize();
     }
 	
 
@@ -19,22 +19,32 @@ public class Player : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            health.CurrentVal -= 10;
-            bladder.CurrentVal += 5;
+            GameControl.control.health.CurrentVal -= 10;
+            GameControl.control.bladder.CurrentVal += 5;
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            health.CurrentVal += 8;
-            bladder.CurrentVal -= 12;
-            energy.CurrentVal += 3;
+            GameControl.control.health.CurrentVal += 8;
+            GameControl.control.bladder.CurrentVal -= 12;
+            GameControl.control.energy.CurrentVal += 3;
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            health.CurrentVal += 2;
-            bladder.CurrentVal += 7;
-            energy.CurrentVal -= 14;
+            GameControl.control.health.CurrentVal += 2;
+            GameControl.control.bladder.CurrentVal += 7;
+            GameControl.control.energy.CurrentVal -= 14;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameControl.control.Save();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GameControl.control.Load();
         }
     }
 }
