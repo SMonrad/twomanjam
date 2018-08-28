@@ -10,7 +10,7 @@ public class GameControl : MonoBehaviour {
     public static GameControl control;
 
     [SerializeField]
-    public Stats health, bladder, energy;
+    public Stats health, bladder, energy, tumblerProgress, danger;
 
     private void Awake()
     {
@@ -23,9 +23,17 @@ public class GameControl : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+
+        health.Initialize();
+        bladder.Initialize();
+        energy.Initialize();
+        tumblerProgress.Initialize();
+        danger.Initialize();
+
     }
 
-    public void Save()
+        public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");

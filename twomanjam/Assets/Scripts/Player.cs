@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public static Player player;
+
     private const float coef = 0.5f;
 
     public int wait = 5;
@@ -12,18 +14,14 @@ public class Player : MonoBehaviour {
 
 	private void Awake ()
     {
-        GameControl.control.health.Initialize();
-        GameControl.control.bladder.Initialize();
-        GameControl.control.energy.Initialize();
-
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private IEnumerator Rest()
+    public IEnumerator Rest(int waittime)
     {
         GetComponent<PlayerController>().canMove = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSecondsRealtime(wait);
+        yield return new WaitForSecondsRealtime(waittime);
         GetComponent<PlayerController>().canMove = true;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -39,13 +37,13 @@ public class Player : MonoBehaviour {
 
         if (GameControl.control.energy.CurrentVal <= 0)
         {
-            StartCoroutine(Rest());
+            StartCoroutine(Rest(wait));
             GameControl.control.energy.CurrentVal = GameControl.control.energy.MaxVal;
         }
 
         if (GameControl.control.bladder.CurrentVal <= 0)
         {
-            StartCoroutine(Rest());
+            StartCoroutine(Rest(wait));
             GameControl.control.bladder.CurrentVal = GameControl.control.bladder.MaxVal;
         }
 

@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private Animator anim;
-    private Rigidbody2D myRigidBody;
+    public Rigidbody2D myRigidBody;
     private SpriteRenderer playerSprite;
 
     public static PlayerController movement;
