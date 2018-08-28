@@ -51,3 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867dde824a06dad49b7eed1ee1a678ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health:
+    bar: {fileID: 0}
+    maxVal: 100
+    currentVal: 100
+  bladder:
+    bar: {fileID: 0}
+    maxVal: 100
+    currentVal: 100
+  energy:
+    bar: {fileID: 0}
+    maxVal: 100
+    currentVal: 100
