@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    
+    private const float coef = 0.5f;
 
 
 	private void Awake ()
@@ -17,6 +17,10 @@ public class Player : MonoBehaviour {
 
 	void Update ()
     {
+        GameControl.control.bladder.CurrentVal -= coef * Time.deltaTime;
+        GameControl.control.energy.CurrentVal -= coef * Time.deltaTime;
+
+        /*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             GameControl.control.health.CurrentVal -= 10;
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour {
             GameControl.control.bladder.CurrentVal += 7;
             GameControl.control.energy.CurrentVal -= 14;
         }
+        */
 
         if (Input.GetKeyDown(KeyCode.K))
         {
