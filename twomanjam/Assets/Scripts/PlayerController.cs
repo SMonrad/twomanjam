@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D myRigidBody;
     private SpriteRenderer playerSprite;
 
+    public static PlayerController movement;
+
     [HideInInspector]
     public bool isMoving;
 

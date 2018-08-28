@@ -11,7 +11,7 @@ public class Stats
     private BarScript bar;
 
     [SerializeField]
-    private float maxVal, currentVal;
+    public float maxVal, currentVal;
 
     public float CurrentVal
     {
@@ -23,7 +23,7 @@ public class Stats
         set
         {
             this.currentVal = Mathf.Clamp(value,0,MaxVal);
-            bar.Value = currentVal;
+            bar.Value = Mathf.Round(currentVal);
         }
     }
 
