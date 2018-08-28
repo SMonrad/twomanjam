@@ -13,20 +13,37 @@ public class Player : MonoBehaviour {
         GameControl.control.bladder.Initialize();
         GameControl.control.energy.Initialize();
     }
-	
+
+    private IEnumerator Rest()
+    {
+        GetComponent<PlayerController>().canMove = false;
+        yield return new WaitForSecondsRealtime(5);
+        GetComponent<PlayerController>().canMove = true;
+    }
 
 	void Update ()
     {
+
         GameControl.control.bladder.CurrentVal -= coef * Time.deltaTime;
         GameControl.control.energy.CurrentVal -= coef * Time.deltaTime;
 
-        /*
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (GameControl.control.energy.CurrentVal <= 0)
         {
-            GameControl.control.health.CurrentVal -= 10;
-            GameControl.control.bladder.CurrentVal += 5;
+            StartCoroutine(Rest());
+            GameControl.control.energy.CurrentVal = GameControl.control.energy.MaxVal;
         }
 
+        if (GameControl.control.bladder.CurrentVal <= 0)
+        {
+            StartCoroutine(Rest());
+            GameControl.control.bladder.CurrentVal = GameControl.control.bladder.MaxVal;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameControl.control.energy.CurrentVal -= 10;
+        }
+        /*
         if (Input.GetKeyDown(KeyCode.W))
         {
             GameControl.control.health.CurrentVal += 8;
