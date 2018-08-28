@@ -6,22 +6,32 @@ public class Player : MonoBehaviour {
 
     private const float coef = 0.5f;
 
+    public int wait = 5;
+
+    private Rigidbody2D rb;
 
 	private void Awake ()
     {
         GameControl.control.health.Initialize();
         GameControl.control.bladder.Initialize();
         GameControl.control.energy.Initialize();
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private IEnumerator Rest()
     {
         GetComponent<PlayerController>().canMove = false;
-        yield return new WaitForSecondsRealtime(5);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSecondsRealtime(wait);
         GetComponent<PlayerController>().canMove = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+
     }
 
-	void Update ()
+    void Update ()
     {
 
         GameControl.control.bladder.CurrentVal -= coef * Time.deltaTime;
