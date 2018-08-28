@@ -12,7 +12,7 @@ public class GameControl : MonoBehaviour {
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
         PlayerData data = new PlayerData();
         data.health = player.health;
@@ -21,6 +21,20 @@ public class GameControl : MonoBehaviour {
 
         bf.Serialize(file, data);
         file.Close();
+    }
+
+    public void Load()
+    {
+        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+            PlayerData data = (PlayerData)bf.Deserialize(file);
+            file.Close();
+            player.health = data.health;
+            player.bladder = data.bladder;
+            player.energy = data.energy;
+        }
     }
 }
 
