@@ -19,11 +19,6 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public float startMovementSpeed;
 
-    [HideInInspector]
-    public string playerNumber;
-    public bool inputSelection; //true represents 'controller, false represents 'keyboard'.
-    private GameObject weaponContainer;
-
 
 
 
@@ -54,9 +49,7 @@ public class PlayerController : MonoBehaviour {
 
         if (canMove)
         {
-            //If using a Keyboard:
-            if (!inputSelection)
-            {
+
                 //SIDEWAYSMOVEMENT with KEYBOARD
                 if (Input.GetAxisRaw("Horizontal") > 0.15f || Input.GetAxisRaw("Horizontal") < -0.15f)
                 {
@@ -86,5 +79,4 @@ public class PlayerController : MonoBehaviour {
               //  anim.SetBool("PlayerMoving", isMoving);
             }
         }
-    }
 }
